@@ -9,5 +9,6 @@
 
 // used 6 * 6 = 36 in fact
 #define ECAT_REG_TABLE_SIZE 64
+#define PI 3.14159265359
 
 #endif //ROS_COMMON_H

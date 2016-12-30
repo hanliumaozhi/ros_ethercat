@@ -12,6 +12,13 @@
 #include "Common.h"
 
 
+//
+//          radian * param_1 * param_2
+// pulse = -----------------------------  + offset
+//                 2*PI*param_3
+//
+
+
 class Motor {
 public:
     Motor(int joint_no, std::string joint_name, uint16_t alias, uint16_t position, uint32_t vendor_id, uint32_t product_code);
@@ -42,6 +49,12 @@ public:
     int get_t_position() const noexcept;
     int get_t_velocity() const noexcept;
 
+    void setting_trans(double offset, double param_1, double param_2, double param_3);
+
+    int radian_to_pulse(double radian);
+
+    double pulse_to_radian(int pulse);
+
 private:
 
     int joint_no_;
@@ -50,6 +63,11 @@ private:
     uint16_t position_;
     uint32_t vendor_id_;
     uint32_t product_code_;
+
+    double offset_;
+    double param_1_;
+    double param_2_;
+    double param_3_;
 
 };
 

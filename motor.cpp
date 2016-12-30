@@ -66,3 +66,22 @@ int Motor::get_t_position() const noexcept{
 int Motor::get_t_velocity() const noexcept{
     return index_to_offset_list_[5];
 }
+
+void Motor::setting_trans(double offset, double param_1, double param_2, double param_3)
+{
+    offset_ = offset;
+    param_1_ = param_1;
+    param_2_ = param_2;
+    param_3_ = param_3;
+}
+
+int Motor::radian_to_pulse(double radian)
+{
+    double tmp = (radian*param_1_*param_2_)/(2*PI*param_3_) + offset_;
+    return static_cast<int>(tmp);
+}
+
+double Motor::pulse_to_radian(int pulse)
+{
+    return (pulse-offset_)*(2*PI*param_3_)/(param_1_*param_2_);
+}
